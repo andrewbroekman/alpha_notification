@@ -26,7 +26,8 @@
             </roles>
             <timezone>Africa/Johannesburg</timezone>
         </developer>
-	<developer>
+
+	    <developer>
             <id>140007950</id>
             <name>Themba Mbhele</name>
             <email>u14007950@tuks.co.za</email>
@@ -35,6 +36,7 @@
             </roles>
             <timezone>Africa/Johannesburg</timezone>
         </developer>
+
         <developer>
             <id>14038600</id>
             <name>Amy Lochner</name>
@@ -44,7 +46,8 @@
             </roles>
             <timezone>Africa/Johannesburg</timezone>
         </developer>
-	<developer>
+
+	    <developer>
             <id>14029368</id>
             <name>Christiaan Nel</name>
             <email>u14029368@tuks.co.za</email>
@@ -53,6 +56,27 @@
             </roles>
             <timezone>Africa/Johannesburg</timezone>
         </developer>
+
+        <developer>
+            <id>14101263</id>
+            <name>Gerard Van Wyk</name>
+            <email>u14101263@tuks.co.za</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>Africa/Johannesburg</timezone>
+        </developer>
+
+        <developer>
+            <id>12252213</id>
+            <name>Killian Kieck</name>
+            <email>u12252213@tuks.co.za</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>Africa/Johannesburg</timezone>
+        </developer>
+
     </developers>
 
     <!-- Repository definitions -->
