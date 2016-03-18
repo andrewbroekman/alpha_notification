@@ -35,6 +35,15 @@
             </roles>
             <timezone>Africa/Johannesburg</timezone>
         </developer>
+        <developer>
+            <id>14038600</id>
+            <name>Amy Lochner</name>
+            <email>u14038600@tuks.co.za</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>Africa/Johannesburg</timezone>
+        </developer>
     </developers>
 
     <!-- Repository definitions -->
