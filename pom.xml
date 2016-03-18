@@ -26,6 +26,15 @@
             </roles>
             <timezone>Africa/Johannesburg</timezone>
         </developer>
+	 <developer>
+            <id>140007950</id>
+            <name>Themba Mbhele</name>
+            <email>u14007950@tuks.co.za</email>
+            <roles>
+                <role>Developer</role>
+            </roles>
+            <timezone>Africa/Johannesburg</timezone>
+        </developer>
     </developers>
 
     <!-- Repository definitions -->
