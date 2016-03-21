@@ -5,12 +5,16 @@ package com.codinginfinity.research.notification;
  * to users
  *
  * @author 	Christiaan Nel
+ * @author  Amy Lochner
  * @since 	2016-03-20
+ *
+ *	21/03/2016 Amy Lochner - clarified javadoc comments
+ *
  */
 public interface Notifications {
 	
 	/**
-	 * Used by users to have automatically a publications report on a group sent.
+	 * Utilised by users to send a publications report to a group automatically.
 	 *
 	 * @param 	reportNotificationRequest Wrapper request object
 	 * @return 	Wrapper response object
@@ -18,7 +22,7 @@ public interface Notifications {
 	public ReportNotificationResponse sendReport(ReportNotificationRequest reportNotificationRequest);
 	
 	/**
-	 * Used by users to be notified of any changes made to publications on which they are authors on.
+	 * Utilised to notify users of any changes made to publications for which they are authors on.
 	 *
 	 * @param 	activitiesNotificationsRequest Wrapper request object
 	 * @return 	Wrapper response object
@@ -26,7 +30,7 @@ public interface Notifications {
 	public ActivityNotificationResponse sendActivityNotification(ActivitiesNotificationRequest activitiesNotificationsRequest);
 	
 	/**
-	 * Used by users to schedule general reminders for themselves.
+	 * Utilised to schedule general reminders for users.
 	 *
 	 * @param 	reminderRequest Wrapper request object
 	 * @return 	Wrapper response object
@@ -34,7 +38,7 @@ public interface Notifications {
 	public ReminderResponse sendReminder(ReminderRequest reminderRequest);
 	
 	/**
-	 * Used by group leaders or administration to send scheduled broadcast messages.
+	 * Utilised by group leaders or administrators to send scheduled broadcast messages.
 	 *
 	 * @param 	broadNotificationRequest Wrapper request object
 	 * @return 	Wrapper response object
