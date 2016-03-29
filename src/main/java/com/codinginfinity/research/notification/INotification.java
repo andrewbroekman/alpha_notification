@@ -95,8 +95,9 @@ public interface INotification
 	/**
 	 * Utilised by Group Leaders or Administrators to send scheduled broadcast messages.
 	 *
-	 * @param 	
+	 * @param 	message the message to be broadcast
+	 * @param 	recipient the user who should receive the notification
 	 * @return 	boolean - True if sent successfully, false otherwise
 	 */
-	public boolean sendBroadNotification();
+	public boolean sendBroadcastNotification(String message, User recipient);
 }
