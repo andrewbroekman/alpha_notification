@@ -4,54 +4,99 @@ package com.codinginfinity.research.notification;
  * Service contract for the Notifications module which is used to send a variety of notifications
  * to users
  *
- * @author 	Christiaan Nel
- * @author  Amy Lochner
- * @author Themba Mbhele
- * @author Avinash Singh
+ * @author	Christiaan Nel
+ * @autho	Amy Lochner
+ * @author	Themba Mbhele
+ * @author	Avinash Singh
  * @since 	2016-03-20
  *
  *	21/03/2016 Amy Lochner - clarified javadoc comments
+ * 	29/03/2016 Avinash Singh - Added javadoc for new function
  *
  */
 public interface INotification 
 {
 	
 	/**
-	 * Utilised by users to send a publications report to a group automatically.
+	 * Utilised by Users to send a Report to a to a specific User.
 	 *
-	 * @param 	reportNotificationRequest Wrapper request object
-	 * @return 	Wrapper response object
+	 * @param 	Report object than contains the Report image to sent to the recipient
+	 * @return 	boolean - True is successful, false otherwise
 	 */
 	public boolean sendReport(Report report);
+	
+	/**
+	 * Utilised by Users to remove a Notification.
+	 *
+	 * @param 	
+	 * @return 	boolean - True if removed successfully, false otherwise
+	 */
 	public boolean removeNotification();
+	
+	/**
+	 * Utilised by Users to modify their Notifications.
+	 *
+	 * @param 	
+	 * @return 	boolean - True if modified successfully, false otherwise
+	 */
 	public boolean modifyNotification();
+	
+	/**
+	 * Utilised by Groups to send a Notification to other Users.
+	 *
+	 * @param 	
+	 * @return 	boolean - True if sent successfully, false otherwise
+	 */
 	public boolean scheduleBroadNotification();
+	
+	/**
+	 * Utilised by Users to schedule a Report Notification.
+	 *
+	 * @param 
+	 * @return 	boolean - True if scheduled successfully, false otherwise
+	 */
 	public boolean scheduleReportNotification();
+	
+	/**
+	 * Utilised by Users to  schedule a Reminder Notification for when a item is due.
+	 *
+	 * @param 	
+	 * @return 	boolean - True if scheduled successfully, false otherwise
+	 */
 	public boolean scheduleReminderNotification();
+	
+	/**
+	 * Utilised by Users to send a Notification when Activity occurs on a Publication.
+	 *
+	 * @param 	
+	 * @return 	boolean - True if scheduled successfully, false otherwise
+	 */
 	/*does not make sense*/
 	public boolean scheduleSendActivityNotification();
 	
 	/**
-	 * Utilised to notify users of any changes made to publications for which they are authors on.
+	 * Utilised to notify Users of any changes made to Publications for which they are authors on.
 	 *
-	 * @param 	activitiesNotificationsRequest Wrapper request object
-	 * @return 	Wrapper response object
+	 * @param 	publication the object needed to see what Activity has occured
+	 * @param	recipient the object which needed to aquire E-mail address
+	 * @return 	boolean - True if sent successfully, false otherwise
 	 */	 
 	public boolean sendActivityNotification(Publication publication, User recipient);
 	
 	/**
-	 * Utilised to schedule general reminders for users.
+	 * Utilised to schedule general reminders for Users.
 	 *
-	 * @param 	reminderRequest Wrapper request object
-	 * @return 	Wrapper response object
+	 * @param 	recipient the object which needed to aquire E-mail address
+	 * @param 	message the text of the Notification
+	 * @return 	boolean - True if sent successfully, false otherwise
 	 */
 	public boolean sendReminder(User recipient, String message, Date date);
 	
 	/**
-	 * Utilised by group leaders or administrators to send scheduled broadcast messages.
+	 * Utilised by Group Leaders or Administrators to send scheduled broadcast messages.
 	 *
-	 * @param 	broadNotificationRequest Wrapper request object
-	 * @return 	Wrapper response object
+	 * @param 	
+	 * @return 	boolean - True if sent successfully, false otherwise
 	 */
 	public boolean sendBroadNotification();
 }
