@@ -5,7 +5,7 @@ package com.codinginfinity.research.notification.requests;
  * @author Avinash
  * @version 1.0 Notifications
  */
-public class ActivitiesNotificationRequest implements UserNotificationRequest
+public class ActivitiesNotificationRequest implements NotificationRequest
 {
     User user;
     String message;
