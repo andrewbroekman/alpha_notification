@@ -10,7 +10,6 @@ public class Interval
 	    days, weeks,months, years
 	}
 	
-	private DurationUnit durationUnit;
 	private String interval;
 	
 	public Interval()
