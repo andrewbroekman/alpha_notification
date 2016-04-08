@@ -5,6 +5,6 @@ package com.codinginfinity.research.notification.requests;
  * @author Avinash
  *
  */
-public class ReportNotificationRequest implements UserNotificationRequest
+public class ReportNotificationRequest implements NotificationRequest
 {
 }
