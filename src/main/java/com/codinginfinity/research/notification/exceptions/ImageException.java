@@ -1,4 +1,4 @@
-package com.codinginfinity.research.notification;
+package com.codinginfinity.research.notification.exceptions;
 
 /**
  * Created by Avinash on 30-Mar-16 project notification.

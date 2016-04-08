@@ -1,4 +1,4 @@
-package com.codinginfinity.research.notification;
+package com.codinginfinity.research.notification.requests;
 
 import java.util.Date;
 import java.util.Vector;
@@ -9,20 +9,34 @@ import java.util.Vector;
  * @author	Avinash Singh
  * @since 	2016-03-20
  * @version 1.0 Notifications
- * @param userList this vector contains all the users relevant to the Broadcast.
- * @param message this is the message that gets broadcasted
- * @param start starting date
- * @param end ending date
- * @param duration the amount of time that the broadcast is relevant.
+ *
  */
-public class BroadcastNotificationRequest implements NotificationRequest
+public class BroadcastNotificationRequest implements UserNotificationRequest
 {
-
+    /**
+    *  userList this vector contains all the users relevant to the Broadcast.
+    */
     Vector<User> userList;
+
+    /**
+     *
+     */
     String message;
+
+    /**
+     *
+     */
     Date start;
-    Date end;
-    DurationUnit duration;
+
+    /**
+     *
+     */
+    RepeatRequest end;
+
+    /**
+     *
+     */
+    Interval duration;
 
     /**
      * This constructor initializes the variables of the cass
@@ -33,7 +47,7 @@ public class BroadcastNotificationRequest implements NotificationRequest
      * @param end this is the end data of the notification
      * @param duration this is the enumeration class for the frequency of the notification.
      */
-    BroadcastNotificationRequest(Vector<User> list, String message, Date start, Date end, DurationUnit duration)
+    BroadcastNotificationRequest(Vector<User> list, String message, Date start, RepeatRequest end, Interval duration)
     {
 
         this.message = message;
@@ -48,4 +62,6 @@ public class BroadcastNotificationRequest implements NotificationRequest
             userList.add(list.get(i));
         }
     }
+
+
 }
