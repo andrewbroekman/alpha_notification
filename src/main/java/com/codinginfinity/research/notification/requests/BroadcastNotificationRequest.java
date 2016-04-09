@@ -1,7 +1,10 @@
 package com.codinginfinity.research.notification.requests;
 
+import com.codinginfinity.research.notification.Interval;
+
+import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Vector;
 
 /**
  * This class creates a Request for a broadcast and implements the wrapped object NotificationRequest
@@ -16,7 +19,7 @@ public class BroadcastNotificationRequest implements UserNotificationRequest
     /**
     *  userList this vector contains all the users relevant to the Broadcast.
     */
-    Vector<User> userList;
+    ArrayList<String> userList;
 
     /**
      *
@@ -26,17 +29,17 @@ public class BroadcastNotificationRequest implements UserNotificationRequest
     /**
      *
      */
-    Date start;
+    Date startDate;
 
     /**
      *
      */
-    RepeatRequest end;
+    Date endDate;
 
     /**
      *
      */
-    Interval duration;
+    @Inject Interval interval;
 
     /**
      * This constructor initializes the variables of the cass
@@ -47,20 +50,41 @@ public class BroadcastNotificationRequest implements UserNotificationRequest
      * @param end this is the end data of the notification
      * @param duration this is the enumeration class for the frequency of the notification.
      */
-    BroadcastNotificationRequest(Vector<User> list, String message, Date start, RepeatRequest end, Interval duration)
+    @Inject
+    BroadcastNotificationRequest(ArrayList<String> list, String message, Date startDate, Date endDate, Interval interval)
     {
 
         this.message = message;
-        this.start = start;
-        this.end = end;
-        this.duration = duration;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.interval = interval;
 
-        userList = new Vector<User>();
+        this.userList = list;
 
-        for (int i = 0; i < list.size(); ++i)
-        {
-            userList.add(list.get(i));
-        }
+    }
+    public User getUser()
+    {
+        return null;
+    }
+    public String getMessage()
+    {
+        return this.message;
+    }
+    public Date getStartDate()
+    {
+        return this.startDate;
+    }
+    public Date getEndDate()
+    {
+        return this.endDate;
+    }
+    public Interval getInterval()
+    {
+        return this.interval;
+    }
+    public ArrayList<String> getUserlist()
+    {
+        return this.userList;
     }
 
 
