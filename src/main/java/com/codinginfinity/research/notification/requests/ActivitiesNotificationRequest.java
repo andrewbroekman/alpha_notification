@@ -1,14 +1,18 @@
 package com.codinginfinity.research.notification.requests;
 
+import com.codinginfinity.research.notification.Emailer;
+import com.codinginfinity.research.notification.Schedule;
+import com.codinginfinity.research.notification.responses.NotificationResponse;
+
 /**
- * Created by Avinash on 2016-04-07 project notification.
- * @author Avinash
+ * @author COS301 Alpha Notifications
  * @version 1.0 Notifications
  */
 public class ActivitiesNotificationRequest implements NotificationRequest
 {
     User user;
     String message;
+    Emailer email;
 
     /**
      * This constructor initializes all the variables of the class.
@@ -20,12 +24,18 @@ public class ActivitiesNotificationRequest implements NotificationRequest
     {
         this.user = user;
         this.message = message;
+        email = new Emailer();
     }
 
-    @Override
-    public void start()
+    public NotificationResponse start()
     {
+        // @TODO Create message, extract email, subject, SEND IT!!!
+        String recipient = user.getEmailAddress();
+        String subject = "Activity Notification";
+        if (!email.sendMail(recipient, subject, message))
+            return new NotificationResponse("FAILED", "Could not send to the recipient: " + recipient);
 
+        return new NotificationResponse("SUCCESS");
     }
 
 
