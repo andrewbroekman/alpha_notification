@@ -7,11 +7,13 @@ import java.util.Date;
  */
 public class RepeatRequest
 {
-    Date endDate;
+    private Date endDate;
+    private Interval interval;
 
-    public RepeatRequest(Date endDate)
+    public RepeatRequest(Date endDate, Interval interval)
     {
         this.endDate = endDate;
+        this.interval = interval;
     }
 
     public void setEndDate(Date endDate)
@@ -23,4 +25,6 @@ public class RepeatRequest
     {
 	    return this.endDate;
     }
+
+    public Interval getInterval() { return this.interval; }
 }
