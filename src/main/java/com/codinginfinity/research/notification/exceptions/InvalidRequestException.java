@@ -1,3 +1,4 @@
+
 package com.codinginfinity.research.notification.exceptions;
 
 /**
