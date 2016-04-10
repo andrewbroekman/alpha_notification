@@ -1,4 +1,4 @@
-package com.codinginfinity.research.notification;
+package com.codinginfinity.research.notification.defaultImpl;
 
 import com.codinginfinity.research.notification.exceptions.ImageException;
 import com.codinginfinity.research.notification.exceptions.RecipientException;

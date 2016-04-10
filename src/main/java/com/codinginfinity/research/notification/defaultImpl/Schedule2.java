@@ -1,4 +1,4 @@
-package com.codinginfinity.research.notification;
+package com.codinginfinity.research.notification.defaultImpl;
 /**
  * @author Killian Kieck 
  */
