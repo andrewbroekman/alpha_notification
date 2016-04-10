@@ -31,11 +31,13 @@ public class ActivitiesNotificationRequest implements NotificationRequest
      * @param message the message to send to the recipient.
      */
    @Inject
-   ActivitiesNotificationRequest(User user, String message, Interval interval)
+   ActivitiesNotificationRequest(User user, String message,Date startDate,Date endDate, Interval interval)
     {
         this.user = user;
         this.message = message;
-        this.interval = interval;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.interval = null;
     }
 
 
