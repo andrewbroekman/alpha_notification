@@ -1,9 +1,34 @@
 package com.codinginfinity.research.notification.responses;
 
 /**
- * Created by Avinash on 2016-04-07 project notification.
+ * @author COS301 - Alpha Notification
  */
-public interface NotificationResponse
+
+public class NotificationResponse
 {
+    private String code = null;
+    private String message = null;
+
+    public NotificationResponse(String code)
+    {
+        this.code = code;
+    }
+
+    public NotificationResponse(String code, String message)
+    {
+        this.code = code;
+        this.message = message;
+    }
+
+    public String getCode()
+    {
+        return code;
+    }
+
+    public String getMessage()
+    {
+        return message;
+    }
+
 
 }
