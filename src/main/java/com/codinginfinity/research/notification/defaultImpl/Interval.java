@@ -12,12 +12,17 @@ public class Interval
 	
 	private String interval;
 	
-	public Interval()
+	public Interval(String interval)
 	{
-        }
+		this.interval = interval.toLowerCase();
+    }
 	
-	public void setInterval(String interval)
+	public void setDuration(String interval)
 	{
 		this.interval = interval;
+	}
+	public String getDuration()
+	{
+		return this.interval;
 	}
 }
