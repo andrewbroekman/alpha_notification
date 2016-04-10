@@ -41,16 +41,11 @@ public class Emailer implements IEmailer
 	*/
 	protected Session session;
 
+	/**
+	*	The message to be sent to the user
+	*/
 	protected Message msg;
 
-	/**
-	 * Utilised when initialising an instance of the Emailer class
-
-	 */
-	public Emailer()
-	{
-
-	} 
 	/**
 	 * Utilised when called through the implementation of the Notifications interface to send a notification
 	 *
@@ -114,6 +109,7 @@ public class Emailer implements IEmailer
 	 * @param 	 message - the body of the email
 	 * @param 	 image - the image of the report to be sent to a user
 	 * @return   True if the email was sent successfully
+	 * @TODO 	 Add the attachment
 	 * @exception throws a MessagingException
 	 */
 	public boolean sendMail(String recipient, String subject, String message,  Image image) throws MessagingException
