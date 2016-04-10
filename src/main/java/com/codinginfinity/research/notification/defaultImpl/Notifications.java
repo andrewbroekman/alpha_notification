@@ -17,7 +17,7 @@ public class Notifications implements INotification
 {
     @Inject
     private Schedule schedule;
-
+  
     @Inject public NotificationResponse ActivitiesNotification(NotificationRequest request) throws InvalidRequestException
     {
         if (request == null) throw new InvalidRequestException("ActivitiesNotificationRequest is NULL");
