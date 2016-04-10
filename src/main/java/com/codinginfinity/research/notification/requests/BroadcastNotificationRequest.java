@@ -1,6 +1,7 @@
 package com.codinginfinity.research.notification.requests;
 
-import com.codinginfinity.research.notification.Interval;
+
+import com.codinginfinity.research.notification.defaultImpl.Interval;
 import com.codinginfinity.research.notification.responses.NotificationResponse;
 
 import javax.inject.Inject;
@@ -36,6 +37,8 @@ public class BroadcastNotificationRequest implements NotificationRequest
      */
     private Date endDate;
 
+    private String id;
+
     /**
      *
      */
@@ -51,9 +54,9 @@ public class BroadcastNotificationRequest implements NotificationRequest
      * @param duration this is the enumeration class for the frequency of the notification.
      */
     @Inject
-    public BroadcastNotificationRequest(ArrayList<String> list, String message, Date startDate, Date endDate, Interval interval)
+    public BroadcastNotificationRequest(String id, ArrayList<String> list, String message, Date startDate, Date endDate, Interval interval)
     {
-
+        this.id = id;
         this.message = message;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -82,6 +85,12 @@ public class BroadcastNotificationRequest implements NotificationRequest
     {
         return this.interval;
     }
+
+    public String getId()
+    {
+        return id;
+    }
+
     public ArrayList<String> getUserlist()
     {
         return this.userList;

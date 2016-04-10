@@ -26,6 +26,7 @@ public class ReportNotificationRequest implements NotificationRequest
     private String message;
     private Date startDate;
     private Date endDate;
+    private String id;
     @Inject
     private Interval interval;
 
@@ -37,9 +38,10 @@ public class ReportNotificationRequest implements NotificationRequest
      * @param image this contains the report image to be sent
      */
 
-    ReportNotificationRequest(User user, String message, Image image, Date startDate, Date endDate, Interval interval)
+    ReportNotificationRequest(String id, User user, String message, Image image, Date startDate, Date endDate, Interval interval)
     {
         this.user = user;
+        this.id = id;
         this.message = message;
         this.image = image;
         this.startDate = startDate;
@@ -70,6 +72,10 @@ public class ReportNotificationRequest implements NotificationRequest
     public Interval getInterval()
     {
         return this.interval;
+    }
+    public String getId()
+    {
+        return id;
     }
 
 }

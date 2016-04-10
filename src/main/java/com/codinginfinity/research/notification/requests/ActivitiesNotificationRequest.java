@@ -1,10 +1,6 @@
 package com.codinginfinity.research.notification.requests;
 
-import com.codinginfinity.research.notification.Emailer;
-import com.codinginfinity.research.notification.Interval;
-import com.codinginfinity.research.notification.Schedule;
-import com.codinginfinity.research.notification.responses.NotificationResponse;
-
+import com.codinginfinity.research.notification.defaultImpl.Interval;
 import javax.inject.Inject;
 import java.util.Date;
 
@@ -19,6 +15,7 @@ public class ActivitiesNotificationRequest implements NotificationRequest
     private String message;
     private Date startDate;
     private Date endDate;
+    private String id;
 
     @Inject
     Interval interval;
@@ -31,9 +28,10 @@ public class ActivitiesNotificationRequest implements NotificationRequest
      * @param message the message to send to the recipient.
      */
    @Inject
-   ActivitiesNotificationRequest(User user, String message,Date startDate,Date endDate, Interval interval)
+   ActivitiesNotificationRequest(String id, User user, String message,Date startDate,Date endDate, Interval interval)
     {
         this.user = user;
+        this.id = id;
         this.message = message;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -61,6 +59,11 @@ public class ActivitiesNotificationRequest implements NotificationRequest
     {
         return this.interval;
     }
+    public String getId()
+    {
+        return id;
+    }
+
 
 
 }

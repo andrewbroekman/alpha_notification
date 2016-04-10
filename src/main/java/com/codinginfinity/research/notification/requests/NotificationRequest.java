@@ -1,6 +1,6 @@
 package com.codinginfinity.research.notification.requests;
 
-import com.codinginfinity.research.notification.Interval;
+import com.codinginfinity.research.notification.defaultImpl.Interval;
 import com.codinginfinity.research.notification.responses.NotificationResponse;
 
 import java.util.Date;
@@ -19,6 +19,7 @@ public interface NotificationRequest
     public Date getStartDate();
     public Date getEndDate();
     public Interval getInterval();
+    public String getId();
 
 
 }
