@@ -5,11 +5,11 @@ import com.codinginfinity.research.notification.Interval;
 import com.codinginfinity.research.notification.Schedule;
 
 
+import javax.inject.Inject;
 import java.util.Date;
 
 /**
- * @author Avinash Singh
- * @author Themba Mbhele
+ * @author COS301 - Alpha Notifications
  */
 public class ReminderRequest implements NotificationRequest
 {
