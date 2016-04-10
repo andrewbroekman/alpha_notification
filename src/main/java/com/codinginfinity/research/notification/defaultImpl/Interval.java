@@ -14,7 +14,7 @@ public class Interval
 	
 	public Interval(String interval)
 	{
-		this.interval = interval;
+		this.interval = interval.toLowerCase();
     }
 	
 	public void setDuration(String interval)
