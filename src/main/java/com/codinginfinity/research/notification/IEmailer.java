@@ -3,21 +3,15 @@ package com.codinginfinity.research.notification;
 import com.codinginfinity.research.notification.exceptions.ImageException;
 import com.codinginfinity.research.notification.exceptions.RecipientException;
 
+import javax.mail.MessagingException;
 import java.awt.*;
 
 
 /**
  * Service contract for the Emailer module which is used to send an email to a user.
  *
- * @author	Amy Lochner
- * @author	Christiaan Nel
- * @author 	Avinash Singh
+ *@author	COS301 - Alpha Notifications
  * @since 	2016-03-29
- *
- *	29/03/2016 Amy Lochner - worked on functionality and structure
- * 	29/03/2016 Christiaan Nel - worked on functionality and structure
- * 	30/03/2016 Avinash Singh - added Exceptions and modified Javadoc
- *
  */
 public interface IEmailer
 {
@@ -45,5 +39,7 @@ public interface IEmailer
 	 * @exception ImageException if a image is in an invalid format or if there is no image
 	 */
 	public boolean sendMail(String recipient, String subject, String message, Image image) throws MessagingException, RecipientException,ImageException;
+
+	public boolean sendMail(String recipient, String subject, String message, String imagePath) throws MessagingException, RecipientException,ImageException;
 	
 }
