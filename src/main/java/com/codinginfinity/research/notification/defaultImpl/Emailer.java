@@ -1,22 +1,10 @@
 package com.codinginfinity.research.notification.defaultImpl;
 
-import com.codinginfinity.research.notification.IEmailer;
-import java.awt.*;
-import java.util.*;
-import javax.mail.Message;
-import javax.mail.Session;
-import javax.mail.Address;
 import javax.mail.*;
-import java.io.UnsupportedEncodingException;
-import java.util.Date;
-
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
-
-
 import javax.mail.internet.*;
-import javax.mail.Transport;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Properties;
 
 /**
@@ -33,23 +21,46 @@ public class Emailer implements IEmailer
 	 */
 	private String sender;
 	/**
+	 * The password of the sender.
+	 */
+	protected String password;
+	/**
 	 * The properties of the environment.
 	 */
+
 	protected Properties properties;
 	/**
 	 * A mail session that provides access to the protocol providers that implement the Store, Transport, and related classes.
 	 */
 	protected Session session;
+	/**
+	 * The server that hosts the sender address
+	 */
+	protected String host;
 
 	protected Message msg;
 
-	/**
-	 * Utilised when initialising an instance of the Emailer class
-	 */
 	public Emailer()
 	{
+		sender = "mbhelethemba4@gmail.com";
+		password = "mbhele11";
+		host = "smtp.gmail.com";
+		properties = System.getProperties();
+		properties.put("mail.smtp.starttls.enable", "true");
+		properties.put("mail.smtp.starttls.required", "true");
+		properties.put("mail.smtp.auth", "true");
+		properties.setProperty("mail.smtp.host", host);
+
+		session = Session.getDefaultInstance(properties,
+				new javax.mail.Authenticator(){
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication(
+								sender, password);// Specify the Username and the PassWord
+					}
+				});
 
 	}
+
 
 	/**
 	 * Utilised when called through the implementation of the Notifications interface to send a notification
@@ -62,48 +73,37 @@ public class Emailer implements IEmailer
 	 */
 	public boolean sendMail(String recipient, String subject, String message)
 	{
-		try
-		{
-			msg = new MimeMessage(session);
-			msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
-			msg.addHeader("format", "flowed");
-			msg.addHeader("Content-Transfer-Encoding", "8bit");
-			msg.setFrom(new InternetAddress("smtp.gmail.com")); // @TODO add a host
+		try{
+			// Create a default MimeMessage object.
+			MimeMessage msg = new MimeMessage(session);
 
-			properties = System.getProperties();
-			properties.put("mail.smtp.starttls.enable", "true");
-			properties.put("mail.smtp.starttls.required", "true");
-			properties.put("mail.smtp.auth", "true");
-			properties.setProperty("mail.smtp.host", "mail.testaplha301@gmail.com");
+			// Set From: header field of the header.
+			msg.setFrom(new InternetAddress(sender));
 
+			// Set To: header field of the header.
+			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 
-
-			session = Session.getDefaultInstance(properties,
-					new Authenticator()
-					{
-						protected PasswordAuthentication getPasswordAuthentication()
-						{
-							return new PasswordAuthentication("mail.testaplha301@gmail.com","12345test");
-						}
-
-					});
-
-			InternetAddress address = new InternetAddress(recipient);
-			msg.addRecipient(Message.RecipientType.TO, address);
+			// Set Subject: header field
 			msg.setSubject(subject);
-			msg.setSentDate(new Date());
-			Multipart mp = new MimeMultipart();
 
-			BodyPart bp = new MimeBodyPart();
-			bp.setText(message);
+			// Now set the actual message
+			msg.setText(message);
 
-			mp.addBodyPart(bp);
-			msg.setContent(mp);
+			// Send message
 			Transport.send(msg);
-		} catch (javax.mail.MessagingException e)
+
+		}
+		catch (AddressException e)
 		{
-			e.printStackTrace();
 			return false;
+		}
+		catch (javax.mail.MessagingException e)
+		{
+			return false;
+		}
+		catch (Exception errr)
+		{
+			System.out.println(errr.getMessage());
 		}
 		return true;
 	}
@@ -134,15 +134,6 @@ public class Emailer implements IEmailer
 			properties.put("mail.smtp.auth", "true");
 			properties.setProperty("mail.smtp.host", "mail.testaplha301@gmail.com");
 
-			session = Session.getDefaultInstance(properties,
-					new Authenticator()
-					{
-						protected PasswordAuthentication getPasswordAuthentication()
-						{
-							return new PasswordAuthentication("mail.testaplha301@gmail.com","12345test");
-						}
-
-					});
 
 			InternetAddress address = new InternetAddress(recipient);
 			msg.addRecipient(Message.RecipientType.TO, address);
@@ -177,61 +168,6 @@ public class Emailer implements IEmailer
 		return true;
 	}
 
-	public boolean sendMail(String recipient, String subject, String message, String imagePath)
-	{
-		try
-		{
-			msg = new MimeMessage(session);
-			msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
-			msg.addHeader("format", "flowed");
-			msg.addHeader("Content-Transfer-Encoding", "8bit");
-			msg.setFrom(new InternetAddress("smtp.gmail.com")); // @TODO add a host
-
-			properties = System.getProperties();
-			properties.put("mail.smtp.starttls.enable", "true");
-			properties.put("mail.smtp.starttls.required", "true");
-			properties.put("mail.smtp.auth", "true");
-			properties.setProperty("mail.smtp.host", "mail.testaplha301@gmail.com");
-
-			session = Session.getDefaultInstance(properties,
-					new Authenticator()
-					{
-						protected PasswordAuthentication getPasswordAuthentication()
-						{
-							return new PasswordAuthentication("mail.testaplha301@gmail.com","12345test");
-						}
-
-					});
-
-			InternetAddress address = new InternetAddress(recipient);
-			msg.addRecipient(Message.RecipientType.TO, address);
-			msg.setSubject(subject);
-			msg.setSentDate(new Date());
-			Multipart mp = new MimeMultipart();
-
-			BodyPart bp = new MimeBodyPart();
-			bp.setText(message);
-
-			mp.addBodyPart(bp);
-
-			bp = new MimeBodyPart();
-			DataSource source = new FileDataSource(imagePath);
-			bp.setDataHandler(new DataHandler(source));
-			bp.setFileName(imagePath);
-			mp.addBodyPart(bp);
-
-
-			msg.setContent(mp);
-			Transport.send(msg);
-		}
-		catch (javax.mail.MessagingException e)
-		{
-			e.printStackTrace();
-			return false;
-		}
-
-		return true;
-	}
 
 	public boolean sendMail(ArrayList<String> recipient, String subject, String message)
 	{
@@ -242,24 +178,6 @@ public class Emailer implements IEmailer
 			msg.addHeader("format", "flowed");
 			msg.addHeader("Content-Transfer-Encoding", "8bit");
 			msg.setFrom(new InternetAddress("smtp.gmail.com")); // @TODO add a host
-
-			properties = System.getProperties();
-			properties.put("mail.smtp.starttls.enable", "true");
-			properties.put("mail.smtp.starttls.required", "true");
-			properties.put("mail.smtp.auth", "true");
-			properties.setProperty("mail.smtp.host", "mail.testaplha301@gmail.com");
-
-
-
-			session = Session.getDefaultInstance(properties,
-					new Authenticator()
-					{
-						protected PasswordAuthentication getPasswordAuthentication()
-						{
-							return new PasswordAuthentication("mail.testaplha301@gmail.com","12345test");
-						}
-
-					});
 
 
 			for (int i = 0; i < recipient.size(); ++i)
