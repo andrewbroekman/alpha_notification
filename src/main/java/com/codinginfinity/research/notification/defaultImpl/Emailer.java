@@ -76,16 +76,17 @@ public class Emailer implements IEmailer
 			properties.put("mail.smtp.auth", "true");
 			properties.setProperty("mail.smtp.host", "mail.testaplha301@gmail.com");
 
-			Authenticator auth = new Authenticator()
-			{
-				@Override
-				protected PasswordAuthentication getPasswordAuthentication()
-				{
-					return super.getPasswordAuthentication("mail.testaplha301@gmail.com", "12345test");
-				}
-			};
 
-			session = Session.getDefaultInstance(properties, auth);
+
+			session = Session.getDefaultInstance(properties,
+					new Authenticator()
+					{
+						protected PasswordAuthentication getPasswordAuthentication()
+						{
+							return new PasswordAuthentication("mail.testaplha301@gmail.com","12345test");
+						}
+
+					});
 
 			InternetAddress address = new InternetAddress(recipient);
 			msg.addRecipient(Message.RecipientType.TO, address);
@@ -133,16 +134,15 @@ public class Emailer implements IEmailer
 			properties.put("mail.smtp.auth", "true");
 			properties.setProperty("mail.smtp.host", "mail.testaplha301@gmail.com");
 
-			Authenticator auth = new Authenticator()
-			{
-				@Override
-				protected PasswordAuthentication getPasswordAuthentication()
-				{
-					return super.getPasswordAuthentication("mail.testaplha301@gmail.com", "12345test");
-				}
-			};
+			session = Session.getDefaultInstance(properties,
+					new Authenticator()
+					{
+						protected PasswordAuthentication getPasswordAuthentication()
+						{
+							return new PasswordAuthentication("mail.testaplha301@gmail.com","12345test");
+						}
 
-			session = Session.getDefaultInstance(properties, auth);
+					});
 
 			InternetAddress address = new InternetAddress(recipient);
 			msg.addRecipient(Message.RecipientType.TO, address);
@@ -193,16 +193,15 @@ public class Emailer implements IEmailer
 			properties.put("mail.smtp.auth", "true");
 			properties.setProperty("mail.smtp.host", "mail.testaplha301@gmail.com");
 
-			Authenticator auth = new Authenticator()
-			{
-				@Override
-				protected PasswordAuthentication getPasswordAuthentication()
-				{
-					return super.getPasswordAuthentication("mail.testaplha301@gmail.com", "12345test");
-				}
-			};
+			session = Session.getDefaultInstance(properties,
+					new Authenticator()
+					{
+						protected PasswordAuthentication getPasswordAuthentication()
+						{
+							return new PasswordAuthentication("mail.testaplha301@gmail.com","12345test");
+						}
 
-			session = Session.getDefaultInstance(properties, auth);
+					});
 
 			InternetAddress address = new InternetAddress(recipient);
 			msg.addRecipient(Message.RecipientType.TO, address);
@@ -250,16 +249,17 @@ public class Emailer implements IEmailer
 			properties.put("mail.smtp.auth", "true");
 			properties.setProperty("mail.smtp.host", "mail.testaplha301@gmail.com");
 
-			Authenticator auth = new Authenticator()
-			{
-				@Override
-				protected PasswordAuthentication getPasswordAuthentication()
-				{
-					return super.getPasswordAuthentication("mail.testaplha301@gmail.com", "12345test");
-				}
-			};
 
-			session = Session.getDefaultInstance(properties, auth);
+
+			session = Session.getDefaultInstance(properties,
+					new Authenticator()
+					{
+						protected PasswordAuthentication getPasswordAuthentication()
+						{
+							return new PasswordAuthentication("mail.testaplha301@gmail.com","12345test");
+						}
+
+					});
 
 
 			for (int i = 0; i < recipient.size(); ++i)

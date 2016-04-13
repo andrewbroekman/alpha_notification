@@ -3,12 +3,13 @@ package com.codinginfinity.research.notification.defaultImpl;
 import com.codinginfinity.research.notification.RepeatRequest;
 import com.codinginfinity.research.notification.exceptions.ImageException;
 import com.codinginfinity.research.notification.exceptions.RecipientException;
+import com.codinginfinity.research.notification.mock.User;
 import com.codinginfinity.research.notification.requests.*;
 import com.codinginfinity.research.notification.responses.NotificationResponse;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 
 import javax.ejb.Timeout;
 import javax.inject.Inject;
+import javax.mail.MessagingException;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
@@ -22,6 +23,7 @@ import javax.annotation.*;
 @Entity(name = "Schedule")
 public class Schedules
 {
+
     /**
     * A notification request to be scheduled
     */
@@ -119,6 +121,8 @@ public class Schedules
             String recipient = request.getUser().getEmailAddress();
             if (recipient == null || recipient.equals(""))
                 throw new RecipientException("No Email Address found");
+
+            if (req.getImage() == null) throw new ImageException();
 
             if (!email.sendMail(recipient, subject, request.getMessage(), req.getImage()))
                 return new NotificationResponse("FAILED", "Could not send to the recipient: " + recipient);
