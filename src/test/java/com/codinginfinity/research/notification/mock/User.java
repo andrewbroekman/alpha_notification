@@ -1,4 +1,4 @@
-package com.codinginfinity.research.notification;
+package com.codinginfinity.research.notification.mock;
 
 /**
  * This class is a mock object that will be used for testing purposes.

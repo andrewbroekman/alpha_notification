@@ -1,4 +1,6 @@
-package com.codinginfinity.research.notification;
+package com.codinginfinity.research.notification.mock;
+
+import java.util.Date;
 
 /**
 *	This is a mock object for testing purposes.
