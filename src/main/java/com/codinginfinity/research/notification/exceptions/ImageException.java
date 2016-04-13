@@ -1,8 +1,7 @@
 package com.codinginfinity.research.notification.exceptions;
 
 /**
- * Created by Avinash on 30-Mar-16 project notification.
- * @author Avinash
+ * @author COS301 - Alpha Notifications
  */
 public class ImageException extends Exception
 {
