@@ -1,6 +1,6 @@
 package com.codinginfinity.research.notification.requests;
 
-import com.codinginfinity.research.notification.defaultImpl.Interval;
+import com.codinginfinity.research.notification.Interval;
 import com.codinginfinity.research.notification.mock.User;
 
 import javax.inject.Inject;

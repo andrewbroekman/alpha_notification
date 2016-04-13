@@ -1,8 +1,9 @@
 package com.codinginfinity.research.notification.requests;
 
-import com.codinginfinity.research.notification.Emailer;
+import com.codinginfinity.research.notification.defaultImpl.Emailer;
 import com.codinginfinity.research.notification.Interval;
-import com.codinginfinity.research.notification.Schedule;
+import com.codinginfinity.research.notification.defaultImpl.Schedules;
+import com.codinginfinity.research.notification.mock.User;
 
 
 import javax.inject.Inject;

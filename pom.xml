@@ -11,7 +11,7 @@
     <!-- Basic project settings -->
     <artifactId>notification</artifactId>
     <packaging>jar</packaging>
-    
+
     <!-- Metadata regarding the project -->
     <name>UP CS Research Management System - Notification Module</name>
     <inceptionYear>2016</inceptionYear>
@@ -19,7 +19,7 @@
         <name>University of Pretoria</name>
         <url>http://www.up.ac.za</url>
     </organization>
-    
+
     <!-- List of Developers for this branch -->
     <developers>
         <developer>
@@ -33,7 +33,7 @@
             <timezone>Africa/Johannesburg</timezone>
         </developer>
 
-	<developer>
+        <developer>
             <id>140007950</id>
             <name>Themba Mbhele</name>
             <email>u14007950@tuks.co.za</email>
@@ -48,17 +48,17 @@
             <name>Amy Lochner</name>
             <email>u14038600@tuks.co.za</email>
             <roles>
-     		<role>Developer</role>
+                <role>Developer</role>
             </roles>
             <timezone>Africa/Johannesburg</timezone>
         </developer>
 
-	<developer>
+        <developer>
             <id>14029368</id>
             <name>Christiaan Nel</name>
             <email>u14029368@tuks.co.za</email>
             <roles>
-     		<role>Developer</role>
+                <role>Developer</role>
             </roles>
             <timezone>Africa/Johannesburg</timezone>
         </developer>
@@ -85,6 +85,23 @@
 
     </developers>
 
+    <dependencies>
+
+        <!--Dependency Injection for Java - Annotations (JSR 330) -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+        <!--Unit testing API -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+        </dependency>
+
+    </dependencies>
+
     <!-- Repository definitions -->
     <repositories>
         <repository>
@@ -98,5 +115,4 @@
             <url>https://nexus.codinginfinity.com/repository/snapshots/</url>
         </repository>
     </repositories>
-
 </project>

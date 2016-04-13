@@ -1,11 +1,12 @@
 package com.codinginfinity.research.notification.requests;
 
-import com.codinginfinity.research.notification.Emailer;
+import com.codinginfinity.research.notification.defaultImpl.Emailer;
 import com.codinginfinity.research.notification.Interval;
 import com.codinginfinity.research.notification.exceptions.ImageException;
 import com.codinginfinity.research.notification.exceptions.RecipientException;
+import com.codinginfinity.research.notification.mock.User;
 import com.codinginfinity.research.notification.responses.NotificationResponse;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
+
 
 import javax.inject.Inject;
 import java.lang.Exception.*;
@@ -37,7 +38,7 @@ public class ReportNotificationRequest implements NotificationRequest
      * @param message the message to send to the recipient.
      * @param image this contains the report image to be sent
      */
-
+    @Inject
     ReportNotificationRequest(String id, User user, String message, Image image, Date startDate, Date endDate, Interval interval)
     {
         this.user = user;

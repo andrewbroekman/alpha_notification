@@ -1,4 +1,4 @@
-package com.codinginfinity.research.notification.defaultImpl;
+package com.codinginfinity.research.notification;
 
 import javax.inject.Inject;
 
@@ -20,7 +20,7 @@ public class Interval
 	*/
 	@Inject
 	private String interval;
-	
+	@Inject
 	public Interval(String interval)
 	{
 		this.interval = interval.toLowerCase();

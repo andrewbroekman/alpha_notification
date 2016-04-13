@@ -1,11 +1,9 @@
 package com.codinginfinity.research.notification.requests;
 
-import com.codinginfinity.research.notification.defaultImpl.Interval;
+import com.codinginfinity.research.notification.Interval;
 import com.codinginfinity.research.notification.mock.User;
-import com.codinginfinity.research.notification.responses.NotificationResponse;
 
 import java.util.Date;
-import java.lang.annotation.*;
 
 /**
  * This interface is a wrapper for the different types of requests
