@@ -1,5 +1,7 @@
 package com.codinginfinity.research.notification.defaultImpl;
 
+import javax.inject.Inject;
+
 /**
  *	Interval class which allows a user to specify a repeat interval
  * @author COS301 Team Alpha Notification

@@ -25,3 +25,4 @@ public class RecipientException extends Exception
         super(source);
     }
 }
+

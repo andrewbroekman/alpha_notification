@@ -10,7 +10,7 @@ import javax.mail.Session;
 /**
  * @author COS301 - Alpha Notifications
  */
-public class STMPServer
+public class SMTPServer
 {
 
     public static void main(String[] args)

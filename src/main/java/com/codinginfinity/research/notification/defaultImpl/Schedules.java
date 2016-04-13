@@ -8,6 +8,7 @@ import com.codinginfinity.research.notification.responses.NotificationResponse;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 
 import javax.ejb.Timeout;
+import javax.inject.Inject;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
@@ -15,11 +16,11 @@ import javax.ejb.Schedule;
 import javax.annotation.*;
 
 /**
- *  Schedule class which takes a request and requires the Emailer object to send the respective email
+ * Schedules class which takes a request and requires the Emailer object to send the respective email
  * @author COS301 Team Alpha Notification
  */
-@Entity
-public class Schedule
+@Entity(name = "Schedule")
+public class Schedules
 {
     /**
     * A notification request to be scheduled
@@ -34,32 +35,36 @@ public class Schedule
     * An Emailer object which is used to send an email
     */
     private Emailer email;
-<<<<<<< HEAD
+
     /**
     * Initialises a schedule object 
     */
-=======
+
     private String id;
 
 
->>>>>>> d0ef70eb2965eb95ea70a14af719cba5724720f0
-    public Schedule(NotificationRequest request)
+    public Schedules(NotificationRequest request)
     {
         this.request = request;
         this.repeatRequest = new RepeatRequest(request.getEndDate(), request.getInterval());
-<<<<<<< HEAD
+
         email = new Emailer();
     }
+
+    public Schedules()
+    {
+    }
+
     /**
     * Extracts the necessary fields from the ActivityNotificationRequest object and passes them through to the sendMail function
     * @return NotificationResponse with a success/fail code
     */
-=======
-    }
+
+
 
     @javax.ejb.Schedule(minute = "15")
     @Timeout
->>>>>>> d0ef70eb2965eb95ea70a14af719cba5724720f0
+
     public NotificationResponse sendActivityNotification()
     {
         // @TODO Create message, extract email, subject, SEND IT!!!
@@ -86,17 +91,17 @@ public class Schedule
        }
        return new NotificationResponse("SUCCESS");
     }
-<<<<<<< HEAD
+
     
     /**
     * Extracts the necessary fields from the ReportNotificationRequest object and passes them through to the sendMail function
     * @return NotificationResponse with a success/fail code
     */
-=======
+
 
     @javax.ejb.Schedule(minute = "15")
     @Timeout
->>>>>>> d0ef70eb2965eb95ea70a14af719cba5724720f0
+
     public NotificationResponse sendReportNotification()
     {
         // @TODO Create message, extract email, subject, SEND IT!!!
@@ -133,15 +138,15 @@ public class Schedule
 
         return new NotificationResponse("SUCCESS");
     }
-<<<<<<< HEAD
+
     /**
     * Extracts the necessary fields from the ReminderRequest object and passes them through to the sendMail function
     * @return NotificationResponse with a success/fail code
     */
-=======
+
     @javax.ejb.Schedule(minute = "15")
     @Timeout
->>>>>>> d0ef70eb2965eb95ea70a14af719cba5724720f0
+
     public NotificationResponse sendReminderNotification()
     {
         String subject = "Reminder Notification";

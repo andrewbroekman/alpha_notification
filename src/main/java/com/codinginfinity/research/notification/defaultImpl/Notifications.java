@@ -4,9 +4,13 @@ import com.codinginfinity.research.notification.INotification;
 import com.codinginfinity.research.notification.exceptions.InvalidRequestException;
 import com.codinginfinity.research.notification.requests.NotificationRequest;
 import com.codinginfinity.research.notification.responses.NotificationResponse;
-import com.codinginfinity.research.notification.defaultImpl.Schedule;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
+import javax.transaction.UserTransaction;
 
 /**
  *  Implementation of INotification module which the system will use to make use of Notification functionality
@@ -14,32 +18,39 @@ import javax.inject.Inject;
  */
 public class Notifications implements INotification
 {
+    @PersistenceContext
+    EntityManagerFactory emf;
+    EntityManager em;
+//    @Resource
+//    UserTransaction utx;
     /**
-    *   A schedule object used to call a function which will ask the emailer object to send the respective email
+    *   A schedules object used to call a function which will ask the emailer object to send the respective email
     */
-    private Schedule schedule;
+    private Schedules schedules;
     /**
     *   Called by to issue an Activity Notification
-    *   @param NotificationRequest object
+    *   @param request object
     *   @return NotificationResponse with a success/fail code
     */
     @Inject public NotificationResponse ActivitiesNotification(NotificationRequest request) throws InvalidRequestException
     {
         if (request == null) throw new InvalidRequestException("ActivitiesNotificationRequest is NULL");
-        schedule = new Schedule(request);
-        return schedule.sendActivityNotification();
+
+        schedules = new Schedules(request);
+        em.persist(schedules);
+        return schedules.sendActivityNotification();
 
     }
     /**
     *   Called by to issue an Report Notification
-    *   @param NotificationRequest object
+    *   @param request object
     *   @return NotificationResponse with a success/fail code
     */
     @Inject public NotificationResponse ReportNotification(NotificationRequest request)throws InvalidRequestException
     {
         if (request == null) throw new InvalidRequestException("ReportNotificationRequest is NULL");
-        schedule = new Schedule(request);
-        return schedule.sendReportNotification();
+        schedules = new Schedules(request);
+        return schedules.sendReportNotification();
     }
     /**
     *   Called by to issue an Reminder Notification
@@ -49,8 +60,8 @@ public class Notifications implements INotification
     @Inject public NotificationResponse ReminderNotification(NotificationRequest request)throws InvalidRequestException
     {
         if (request == null) throw new InvalidRequestException("ReminderNotificationRequest is NULL");
-        schedule = new Schedule(request);
-        return schedule.sendReminderNotification();
+        schedules = new Schedules(request);
+        return schedules.sendReminderNotification();
     }
     /**
     *   Called by to issue an Broadcast Notification
@@ -60,8 +71,8 @@ public class Notifications implements INotification
     @Inject public NotificationResponse BroadcastNotification(NotificationRequest request)throws InvalidRequestException
     {
         if (request == null) throw new InvalidRequestException("BroadcastNotificationRequest is NULL");
-        schedule = new Schedule(request);
-        return schedule.sendBroadcastNotification();
+        schedules = new Schedules(request);
+        return schedules.sendBroadcastNotification();
     }
     /**
     *   Called to Modify a Notification

@@ -1,7 +1,6 @@
 package com.codinginfinity.research.notification.defaultImpl;
 
 import com.codinginfinity.research.notification.IEmailer;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 import java.awt.*;
 import java.util.*;
 import javax.mail.Message;
