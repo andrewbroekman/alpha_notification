@@ -2,6 +2,7 @@ package com.codinginfinity.research.notification.requests;
 
 
 import com.codinginfinity.research.notification.defaultImpl.Interval;
+import com.codinginfinity.research.notification.mock.User;
 import com.codinginfinity.research.notification.responses.NotificationResponse;
 
 import javax.inject.Inject;
@@ -49,9 +50,9 @@ public class BroadcastNotificationRequest implements NotificationRequest
      *
      * @param list this is the recipient list that will contain the email addresses from the User object
      * @param message this is the actual message to be sent to the recipient
-     * @param endDate this is the start date of the notification
-     * @param end this is the end data of the notification
-     * @param duration this is the enumeration class for the frequency of the notification.
+     * @param startDate this is the start date of the notification
+     * @param endDate this is the end data of the notification
+     * @param interval this is the enumeration class for the frequency of the notification.
      */
     @Inject
     public BroadcastNotificationRequest(String id, ArrayList<String> list, String message, Date startDate, Date endDate, Interval interval)
