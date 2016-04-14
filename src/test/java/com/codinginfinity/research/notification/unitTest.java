@@ -34,12 +34,12 @@ public class UnitTest
         notification = new Notifications();
         ArrayList<String> list = new ArrayList<String>();
         list.add("mbhelethemba4@gmail.com");
-        list.add("lochnerAmy@gmail.com");
+//        list.add("lochnerAmy@gmail.com");
         list.add("tashan.avi@gmail.com");
-        list.add("nelChristiaan@hotmail.com");
-        list.add("dregrar@gmail.com");
-        list.add("c.m.dasilva@live.co.za");
-        list.add("u29005150@tuks.co.za");
+//        list.add("nelChristiaan@hotmail.com");
+//        list.add("dregrar@gmail.com");
+//        list.add("c.m.dasilva@live.co.za");
+//        list.add("u29005150@tuks.co.za");
         broadcastNotificationRequest = new BroadcastNotificationRequest("2",list,"This is a broadcast message",new Date(),new Date(), new Interval("weeks"));
         reminderRequest = new ReminderRequest("3",new User("Amy","Lochner","lochnerAmy@gmail.com", "member"),"This is a reminder: Your publication is due on Friday 22 April 2016", new Date(), new Date(),new Interval("days"));
         reportNotificationRequest = new ReportNotificationRequest("4", new User("Avinash", "Singh", "tashan.avi@gmail.com", "Leader"), "This is a report", "Vector-based_example.svg", new Date(), new Date(), new Interval("weekly"));
