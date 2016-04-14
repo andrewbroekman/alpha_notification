@@ -1,8 +1,4 @@
-package com.codinginfinity.research.notification.defaultImp;
-
-import com.codinginfinity.research.notification.IEmailer;
-import com.codinginfinity.research.notification.exceptions.ImageException;
-import com.codinginfinity.research.notification.exceptions.RecipientException;
+package com.codinginfinity.research.notification.defaultImpl;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -79,7 +75,7 @@ public class Emailer implements IEmailer
 	 * @return True if the email was sent successfully
 	 * @throws throws a MessagingException
 	 */
-	public boolean sendMail(String recipient, String subject, String message)
+	public boolean sendMail(String name, String recipient, String subject, String message)
 	{
 		try{
 			// Create a default MimeMessage object.
@@ -95,7 +91,25 @@ public class Emailer implements IEmailer
 			msg.setSubject(subject);
 
 			// Now set the actual message
-			msg.setText(message);
+			//msg.setText(message);
+
+			//create the html email
+			String part1 = "<div dir=\"ltr\"><div style=\"text-align:center\"><img src=\"http://www.up.ac.za/themes/up/img/up-logo.jpg\"><br><img src=\"http://www.cs.up.ac.za/static/images/headerCS.gif\" class=\"\" align=\"middle\"><br><h1><font size=\"2\">";
+
+			String greeting = "Hi "+name;
+
+			String part2 = "</font></h1><p class=\"\"><font size=\"4\"><b>";
+
+			String heading = subject;
+
+			String part3 = "</b></font></p><p>";
+
+			String messageContents = message;
+
+			String part4 = "</p><br><h5><font size=\"1\">Contact us:</font></h5><font size=\"1\"></font><center><font size=\"1\"><a href=\"http://cs.up.ac.za\" align=\"center\" class=\"\">CS website</a><br></font><p><font size=\"1\"><a href=\"http://cs.up.ac.za/contact\">Email Enquiries</a></font></p><font size=\"1\">Phone: +27 12 420 2504</font></center></div></div>";
+			// Now set the actual message
+			String finalMessage = part1+greeting+part2+heading+part3+messageContents+part4;
+			msg.setContent(finalMessage, "text/html");
 
 			// Send message
 			Transport.send(msg);
@@ -126,7 +140,7 @@ public class Emailer implements IEmailer
 	 * @return True if the email was sent successfully
 	 * @throws throws a MessagingException
 	 */
-	public boolean sendMail(String recipient, String subject, String message, Image image)
+	public boolean sendMail(String name, String recipient, String subject, String message, Image image)
 	{
 //		try
 //		{
@@ -164,7 +178,7 @@ public class Emailer implements IEmailer
 		return true;
 	}
 
-	public boolean sendMail(String recipient, String subject, String message, String imagePath) throws MessagingException, RecipientException, ImageException
+	public boolean sendMail(String name, String recipient, String subject, String message, String imagePath) throws MessagingException, RecipientException, ImageException
 	{
 		try{
 			// Create a default MimeMessage object.
@@ -218,9 +232,9 @@ public class Emailer implements IEmailer
 		try
 		{
 			msg = new MimeMessage(session);
-			msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
-			msg.addHeader("format", "flowed");
-			msg.addHeader("Content-Transfer-Encoding", "8bit");
+//			msg.addHeader("Content-type", "text/HTML; charset=UTF-8");
+//			msg.addHeader("format", "flowed");
+//			msg.addHeader("Content-Transfer-Encoding", "8bit");
 			msg.setFrom(new InternetAddress("smtp.gmail.com")); // @TODO add a host
 
 			for (int i = 0; i < recipient.size(); ++i)
@@ -235,14 +249,29 @@ public class Emailer implements IEmailer
 			}
 
 			msg.setSubject(subject);
-			msg.setSentDate(new Date());
-			Multipart mp = new MimeMultipart();
+//			msg.setSentDate(new Date());
+//			Multipart mp = new MimeMultipart();
+//
+//			BodyPart bp = new MimeBodyPart();
+//			bp.setText(message);
 
-			BodyPart bp = new MimeBodyPart();
-			bp.setText(message);
+			//mp.addBodyPart(bp);
+			String part1 = "<div dir=\"ltr\"><div style=\"text-align:center\"><img src=\"http://www.up.ac.za/themes/up/img/up-logo.jpg\"><br><img src=\"http://www.cs.up.ac.za/static/images/headerCS.gif\" class=\"\" align=\"middle\"><br><h1><font size=\"2\">";
 
-			mp.addBodyPart(bp);
-			msg.setContent(mp);
+			String greeting = "Hi ";
+
+			String part2 = "</font></h1><p class=\"\"><font size=\"4\"><b>";
+
+			String heading = subject;
+
+			String part3 = "</b></font></p><p>";
+
+			String messageContents = message;
+
+			String part4 = "</p><br><h5><font size=\"1\">Contact us:</font></h5><font size=\"1\"></font><center><font size=\"1\"><a href=\"http://cs.up.ac.za\" align=\"center\" class=\"\">CS website</a><br></font><p><font size=\"1\"><a href=\"http://cs.up.ac.za/contact\">Email Enquiries</a></font></p><font size=\"1\">Phone: +27 12 420 2504</font></center></div></div>";
+			// Now set the actual message
+			String finalMessage = part1+greeting+part2+heading+part3+messageContents+part4;
+			msg.setContent(finalMessage, "text/html");
 			Transport.send(msg);
 		}
 
