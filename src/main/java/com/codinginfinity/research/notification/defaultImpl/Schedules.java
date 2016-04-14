@@ -3,15 +3,16 @@ package com.codinginfinity.research.notification.defaultImpl;
 import com.codinginfinity.research.notification.RepeatRequest;
 import com.codinginfinity.research.notification.exceptions.ImageException;
 import com.codinginfinity.research.notification.exceptions.RecipientException;
-import com.codinginfinity.research.notification.mock.User;
+import com.codinginfinity.research.notification.defaultImpl.Emailer;
 import com.codinginfinity.research.notification.requests.*;
 import com.codinginfinity.research.notification.responses.NotificationResponse;
 
 import javax.ejb.Timeout;
+import javax.ejb.Timer;
+import javax.ejb.TimerConfig;
 import javax.inject.Inject;
 import javax.mail.MessagingException;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Objects;
 import javax.ejb.Schedule;
@@ -21,7 +22,8 @@ import javax.annotation.*;
  * Schedules class which takes a request and requires the Emailer object to send the respective email
  * @author COS301 Team Alpha Notification
  */
-@Entity(name = "Schedule")
+//@Entity(name = "Schedule")
+//@Table
 public class Schedules
 {
 
@@ -39,12 +41,17 @@ public class Schedules
     */
     private Emailer email;
 
+
     /**
     * Initialises a schedule object 
     */
-
+//    private EntityManagerFactory emfactory;
+//    private EntityManager entitymanager;
     private String id;
 
+    private long duration = 6000;
+    private javax.ejb.TimerService timerService;
+    private Timer timer;
 
     public Schedules(NotificationRequest request)
     {
@@ -52,6 +59,17 @@ public class Schedules
         this.repeatRequest = new RepeatRequest(request.getEndDate(), request.getInterval());
 
         email = new Emailer();
+//        emfactory = Persistence.createEntityManagerFactory( "PersistenceUnit" );
+//
+//        entitymanager = emfactory.createEntityManager( );
+//        entitymanager.getTransaction( ).begin( );
+//
+//
+//        entitymanager.persist( request);
+//        entitymanager.getTransaction( ).commit( );
+//
+//        entitymanager.close( );
+//        emfactory.close( );
     }
 
     public Schedules()
@@ -65,12 +83,10 @@ public class Schedules
 
 
 
-    @javax.ejb.Schedule(minute = "15")
-    @Timeout
-
+    @javax.ejb.Schedule(minute = "*/15")
     public NotificationResponse sendActivityNotification()
     {
-        // @TODO Create message, extract email, subject, SEND IT!!!
+//        timer = timerService.createSingleActionTimer(request.getEndDate(), new TimerConfig());
        try
        {
            String recipient = request.getUser().getEmailAddress();
@@ -103,11 +119,9 @@ public class Schedules
 
 
     @javax.ejb.Schedule(minute = "15")
-    @Timeout
-
     public NotificationResponse sendReportNotification()
     {
-        // @TODO Create message, extract email, subject, SEND IT!!!
+//        timer = timerService.createSingleActionTimer(request.getEndDate(), new TimerConfig());
 
         String subject = "Report Notification";
         try
@@ -150,10 +164,9 @@ public class Schedules
     */
 
     @javax.ejb.Schedule(minute = "15")
-    @Timeout
-
     public NotificationResponse sendReminderNotification()
     {
+//        timer = timerService.createSingleActionTimer(request.getEndDate(), new TimerConfig());
         String subject = "Reminder Notification";
         try
         {
@@ -182,10 +195,11 @@ public class Schedules
         return new NotificationResponse("SUCCESS");
 
     }
+
     @javax.ejb.Schedule(minute = "15")
-    @Timeout
     public NotificationResponse sendBroadcastNotification()
     {
+//        timer = timerService.createSingleActionTimer(request.getEndDate(), new TimerConfig());
         String subject = "Broadcast Notification";
         try
         {
@@ -227,5 +241,22 @@ public class Schedules
         this.id = id;
     }
 
+
+//    @Timeout
+//    public void timeout(Timer timer) {
+//        System.out.println("TimerBean: Request lifetime has expired");
+//    }
+
+
+//    @Override
+//    protected void finalize() throws Throwable
+//    {
+//        try {
+//            entitymanager.close();
+//            emfactory.close();
+//        } finally {
+//            super.finalize();
+//        }
+//    }
 
 }

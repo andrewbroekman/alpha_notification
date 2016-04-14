@@ -9,6 +9,9 @@ import com.codinginfinity.research.notification.responses.NotificationResponse;
 
 
 import javax.inject.Inject;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.lang.Exception.*;
 
 
@@ -27,6 +30,8 @@ public class ReportNotificationRequest implements NotificationRequest
     private String message;
     private Date startDate;
     private Date endDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
     private String imagePath;
     @Inject
@@ -86,6 +91,7 @@ public class ReportNotificationRequest implements NotificationRequest
     {
         return this.interval;
     }
+    @Id
     public String getId()
     {
         return id;

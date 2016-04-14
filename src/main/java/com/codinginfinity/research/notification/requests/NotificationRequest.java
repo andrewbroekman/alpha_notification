@@ -3,6 +3,9 @@ package com.codinginfinity.research.notification.requests;
 import com.codinginfinity.research.notification.Interval;
 import com.codinginfinity.research.notification.mock.User;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
@@ -18,6 +21,7 @@ public interface NotificationRequest
     public Date getStartDate();
     public Date getEndDate();
     public Interval getInterval();
+    @Id
     public String getId();
 
 

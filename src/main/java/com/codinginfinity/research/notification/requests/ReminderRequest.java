@@ -7,6 +7,9 @@ import com.codinginfinity.research.notification.mock.User;
 
 
 import javax.inject.Inject;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
@@ -19,6 +22,8 @@ public class ReminderRequest implements NotificationRequest
     private String message;
     private Date startDate;
     private Date endDate;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
     @Inject
@@ -62,6 +67,7 @@ public class ReminderRequest implements NotificationRequest
     {
         return this.interval;
     }
+    @Id
     public String getId()
     {
         return id;
