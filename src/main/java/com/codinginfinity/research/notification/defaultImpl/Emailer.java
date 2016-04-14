@@ -1,5 +1,9 @@
 package com.codinginfinity.research.notification.defaultImpl;
 
+import com.codinginfinity.research.notification.IEmailer;
+import com.codinginfinity.research.notification.exceptions.ImageException;
+import com.codinginfinity.research.notification.exceptions.RecipientException;
+
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.awt.*;
@@ -23,22 +27,22 @@ public class Emailer implements IEmailer
 	/**
 	 * The password of the sender.
 	 */
-	protected String password;
+	private String password;
 	/**
 	 * The properties of the environment.
 	 */
 
-	protected Properties properties;
+	private Properties properties;
 	/**
 	 * A mail session that provides access to the protocol providers that implement the Store, Transport, and related classes.
 	 */
-	protected Session session;
+	private Session session;
 	/**
 	 * The server that hosts the sender address
 	 */
-	protected String host;
+	private String host;
 
-	protected Message msg;
+	private Message msg;
 
 	public Emailer()
 	{
@@ -69,11 +73,11 @@ public class Emailer implements IEmailer
 	 * @param subject   - the subject line of the email
 	 * @param message   - the body of the email
 	 * @return True if the email was sent successfully
-	 * @throws throws a MessagingException
 	 */
 	public boolean sendMail(String recipient, String subject, String message)
 	{
-		try{
+		try
+		{
 			// Create a default MimeMessage object.
 			MimeMessage msg = new MimeMessage(session);
 
@@ -116,7 +120,6 @@ public class Emailer implements IEmailer
 	 * @param message   - the body of the email
 	 * @param image     - the image of the report to be sent to a user
 	 * @return True if the email was sent successfully
-	 * @throws throws a MessagingException
 	 */
 	public boolean sendMail(String recipient, String subject, String message, Image image)
 	{
@@ -169,6 +172,12 @@ public class Emailer implements IEmailer
 	}
 
 
+	public boolean sendMail(String recipient, String subject, String message, String imagePath) throws MessagingException, RecipientException, ImageException
+	{
+		return false;
+	}
+
+
 	public boolean sendMail(ArrayList<String> recipient, String subject, String message)
 	{
 		try
@@ -200,7 +209,7 @@ public class Emailer implements IEmailer
 
 			mp.addBodyPart(bp);
 			msg.setContent(mp);
-			Transport.send(msg);
+			//Transport.send(msg);
 		}
 
 		catch (javax.mail.MessagingException e)

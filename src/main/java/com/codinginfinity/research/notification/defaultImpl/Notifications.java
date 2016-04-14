@@ -37,7 +37,7 @@ public class Notifications implements INotification
         if (request == null) throw new InvalidRequestException("ActivitiesNotificationRequest is NULL");
 
         schedules = new Schedules(request);
-        em.persist(schedules);
+      // em.persist(schedules);
         return schedules.sendActivityNotification();
 
     }
@@ -54,7 +54,7 @@ public class Notifications implements INotification
     }
     /**
     *   Called by to issue an Reminder Notification
-    *   @param NotificationRequest object
+    *   @param request object
     *   @return NotificationResponse with a success/fail code
     */
     @Inject public NotificationResponse ReminderNotification(NotificationRequest request)throws InvalidRequestException
@@ -65,7 +65,7 @@ public class Notifications implements INotification
     }
     /**
     *   Called by to issue an Broadcast Notification
-    *   @param NotificationRequest object
+    *   @param request object
     *   @return NotificationResponse with a success/fail code
     */
     @Inject public NotificationResponse BroadcastNotification(NotificationRequest request)throws InvalidRequestException

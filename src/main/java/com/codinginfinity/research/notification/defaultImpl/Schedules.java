@@ -13,6 +13,7 @@ import javax.mail.MessagingException;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.Objects;
 import javax.ejb.Schedule;
 import javax.annotation.*;
 
@@ -122,7 +123,7 @@ public class Schedules
             if (recipient == null || recipient.equals(""))
                 throw new RecipientException("No Email Address found");
 
-            if (req.getImage() == null) throw new ImageException();
+            if (req.getImage() == null && Objects.equals(req.getImagePath(), "") || req.getImagePath() == null) throw new ImageException();
 
             if (!email.sendMail(recipient, subject, request.getMessage(), req.getImage()))
                 return new NotificationResponse("FAILED", "Could not send to the recipient: " + recipient);
