@@ -1,8 +1,5 @@
 package com.codinginfinity.research.notification;
 
-import com.codinginfinity.research.notification.exceptions.ImageException;
-import com.codinginfinity.research.notification.exceptions.RecipientException;
-
 import javax.mail.MessagingException;
 import java.awt.*;
 
@@ -25,7 +22,7 @@ public interface IEmailer
 	 * @exception MessagingException if a message is invalid
 	 * @exception RecipientException if a recipient address is invalid
 	 */
-	public boolean sendMail(String recipient, String subject, String message) throws MessagingException, RecipientException;
+	public boolean sendMail(String name, String recipient, String subject, String message) throws MessagingException, RecipientException;
 	/**
 	 * Utilised when called through the implementation of the Notifications interface to send a notification
 	 *
@@ -38,8 +35,8 @@ public interface IEmailer
 	 * @exception 	RecipientException if a recipient address is invalid
 	 * @exception ImageException if a image is in an invalid format or if there is no image
 	 */
-	public boolean sendMail(String recipient, String subject, String message, Image image) throws MessagingException, RecipientException,ImageException;
+	public boolean sendMail(String name, String recipient, String subject, String message, Image image) throws MessagingException, RecipientException,ImageException;
 
-	public boolean sendMail(String recipient, String subject, String message, String imagePath) throws MessagingException, RecipientException,ImageException;
+	//public boolean sendMail(String recipient, String subject, String message, String imagePath) throws MessagingException, RecipientException,ImageException;
 	
 }
