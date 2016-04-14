@@ -28,6 +28,7 @@ public class ReportNotificationRequest implements NotificationRequest
     private Date startDate;
     private Date endDate;
     private String id;
+    private String imagePath;
     @Inject
     private Interval interval;
 
@@ -50,6 +51,17 @@ public class ReportNotificationRequest implements NotificationRequest
         this.interval = interval;
     }
 
+
+    public ReportNotificationRequest(String id, User user, String message, String image, Date startDate, Date endDate, Interval interval)
+    {
+        this.user = user;
+        this.id = id;
+        this.message = message;
+        this.imagePath = image;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.interval = interval;
+    }
     public String getMessage()
     {
         return this.message;
@@ -77,6 +89,10 @@ public class ReportNotificationRequest implements NotificationRequest
     public String getId()
     {
         return id;
+    }
+    public String getImagePath()
+    {
+        return imagePath;
     }
 
 }

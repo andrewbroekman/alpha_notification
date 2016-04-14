@@ -30,7 +30,7 @@ public class ActivitiesNotificationRequest implements NotificationRequest
      * @param message the message to send to the recipient.
      */
    @Inject
-   ActivitiesNotificationRequest(String id, User user, String message,Date startDate,Date endDate, Interval interval)
+   public ActivitiesNotificationRequest(String id, User user, String message, Date startDate, Date endDate, Interval interval)
     {
         this.user = user;
         this.id = id;

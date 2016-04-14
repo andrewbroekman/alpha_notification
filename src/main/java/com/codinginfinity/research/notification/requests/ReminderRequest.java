@@ -30,7 +30,8 @@ public class ReminderRequest implements NotificationRequest
      * @param user the User object that contains the recipient address.
      * @param message the message to send to the recipient.
      */
-   @Inject ReminderRequest(String id, User user, String message, Date startDate, Date endDate, Interval interval)
+   @Inject
+   public ReminderRequest(String id, User user, String message, Date startDate, Date endDate, Interval interval)
     {
         this.user = user;
         this.id = id;
