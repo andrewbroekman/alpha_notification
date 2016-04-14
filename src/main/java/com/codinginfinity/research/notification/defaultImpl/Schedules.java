@@ -1,7 +1,13 @@
 package com.codinginfinity.research.notification.defaultImpl;
 /**
- * Created by themba on 2016/04/13.
+ * COS301 - Alpha Notifications
  */
+import com.codinginfinity.research.notification.RepeatRequest;
+import com.codinginfinity.research.notification.exceptions.RecipientException;
+import com.codinginfinity.research.notification.requests.BroadcastNotificationRequest;
+import com.codinginfinity.research.notification.requests.NotificationRequest;
+import com.codinginfinity.research.notification.requests.ReportNotificationRequest;
+import com.codinginfinity.research.notification.responses.NotificationResponse;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.MessagingException;
 
 
@@ -63,7 +69,7 @@ import java.util.Date;
                 if(request.getMessage()== null || request.getMessage().equals(""))
                     throw new MessagingException("No message found");
 
-                if (!email.sendMail(request.getUser().getName(), recipient, subject, request.getMessage()))
+                if (!email.sendMail(request.getUser().getFirstName(), recipient, subject, request.getMessage()))
                     return new NotificationResponse("FAILED", "Could not send to the recipient: " + recipient);
             }
             catch (MessagingException me)
@@ -138,7 +144,7 @@ import java.util.Date;
                 String recipient = request.getUser().getEmailAddress();
                 if (recipient == null || recipient.equals("")) throw new RecipientException("No Email Address found");
 
-                if (!email.sendMail(request.getUser().getName(), recipient, subject, request.getMessage()))
+                if (!email.sendMail(request.getUser().getFirstName(), recipient, subject, request.getMessage()))
                     return new NotificationResponse("FAILED", "Could not send to the recipient: " + recipient);
             }
             catch (MessagingException me)

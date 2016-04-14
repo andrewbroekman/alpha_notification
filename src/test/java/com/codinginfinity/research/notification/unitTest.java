@@ -1,5 +1,10 @@
+package com.codinginfinity.research.notification;
 
-
+import com.codinginfinity.research.notification.defaultImpl.Notifications;
+import com.codinginfinity.research.notification.exceptions.InvalidRequestException;
+import com.codinginfinity.research.notification.mock.User;
+import com.codinginfinity.research.notification.requests.*;
+import com.codinginfinity.research.notification.responses.NotificationResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.JUnitCore;
@@ -20,12 +25,12 @@ public class UnitTest
     private BroadcastNotificationRequest broadcastNotificationRequest;
     private ReminderRequest reminderRequest;
     private ReportNotificationRequest reportNotificationRequest;
-    private  NotificationResponse notificationResponse =null;
+    private NotificationResponse notificationResponse =null;
 
     @Before
     public void initializeObjects()
     {
-        activitiesNotificationRequest = new ActivitiesNotificationRequest("1", new User("Themba", "Mbhele", "mbhelethemba4@gmail.com"),"This is the message to be sent!",new Date(), new Date(), new Interval(""));
+        activitiesNotificationRequest = new ActivitiesNotificationRequest("1", new User("Themba", "Mbhele", "mbhelethemba4@gmail.com","Member"),"This is the message to be sent!",new Date(), new Date(), new Interval(""));
         notification = new Notifications();
         ArrayList<String> list = new ArrayList<String>();
         list.add("mbhelethemba4@gmail.com");
@@ -33,9 +38,11 @@ public class UnitTest
         list.add("tashan.avi@gmail.com");
         list.add("nelChristiaan@hotmail.com");
         list.add("dregrar@gmail.com");
+        list.add("c.m.dasilva@live.co.za");
+        list.add("u29005150@tuks.co.za");
         broadcastNotificationRequest = new BroadcastNotificationRequest("2",list,"This is a broadcast message",new Date(),new Date(), new Interval("weeks"));
-        reminderRequest = new ReminderRequest("3",new User("Amy","Lochner","lochnerAmy@gmail.com"),"This is a reminder: Your publication is due on Friday 22 April 2016", new Date(), new Date(),new Interval("days"));
-        reportNotificationRequest = new ReportNotificationRequest("4", new User("Avinash", "Singh", "tashan.avi@gmail.com"), "This is a report", "Vector-based_example.svg", new Date(), new Date(), new Interval("weekly"));
+        reminderRequest = new ReminderRequest("3",new User("Amy","Lochner","lochnerAmy@gmail.com", "member"),"This is a reminder: Your publication is due on Friday 22 April 2016", new Date(), new Date(),new Interval("days"));
+        reportNotificationRequest = new ReportNotificationRequest("4", new User("Avinash", "Singh", "tashan.avi@gmail.com", "Leader"), "This is a report", "Vector-based_example.svg", new Date(), new Date(), new Interval("weekly"));
 
     }
 
@@ -90,7 +97,7 @@ public class UnitTest
 
         try
         {
-            notificationResponse = notification.ActivitiesNotification(activitiesNotificationRequest = new ActivitiesNotificationRequest("1", new User("Themba", "Mbhele", "mbhelethemba4@gmail.com"),"",new Date(), new Date(), new Interval("")));
+            notificationResponse = notification.ActivitiesNotification(activitiesNotificationRequest = new ActivitiesNotificationRequest("1", new User("Themba", "Mbhele", "mbhelethemba4@gmail.com", "member"),"",new Date(), new Date(), new Interval("")));
             assertEquals("The code of the response object should be 'FAILED' ", "FAILED", notificationResponse.getCode());
         }
         catch(InvalidRequestException error)
@@ -120,7 +127,7 @@ public class UnitTest
 
         try
         {
-            notificationResponse = notification.ActivitiesNotification(activitiesNotificationRequest = new ActivitiesNotificationRequest("1", new User("Themba", "Mbhele", ""),"",new Date(), new Date(), new Interval("")));
+            notificationResponse = notification.ActivitiesNotification(activitiesNotificationRequest = new ActivitiesNotificationRequest("1", new User("Themba", "Mbhele", "", "Member"),"",new Date(), new Date(), new Interval("")));
             assertEquals("The code of the response object should be 'FAILED' ", "FAILED", notificationResponse.getCode());
         }
         catch(InvalidRequestException error)

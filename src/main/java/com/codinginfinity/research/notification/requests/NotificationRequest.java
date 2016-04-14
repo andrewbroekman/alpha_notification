@@ -17,6 +17,7 @@ public interface NotificationRequest
 {
 
     public User getUser();
+
     public String getMessage();
     public Date getStartDate();
     public Date getEndDate();

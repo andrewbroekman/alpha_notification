@@ -1,5 +1,9 @@
 package com.codinginfinity.research.notification.defaultImpl;
 
+import com.codinginfinity.research.notification.IEmailer;
+import com.codinginfinity.research.notification.exceptions.ImageException;
+import com.codinginfinity.research.notification.exceptions.RecipientException;
+
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -46,8 +50,8 @@ public class Emailer implements IEmailer
 
 	public Emailer()
 	{
-		sender = "mbhelethemba4@gmail.com";
-		password = "mbhele11";
+		sender = "cs.mail.alpha@gmail.com";
+		password = "12345test";
 		host = "smtp.gmail.com";
 		properties = System.getProperties();
 		properties.put("mail.smtp.starttls.enable", "true");

@@ -1,5 +1,8 @@
 package com.codinginfinity.research.notification;
 
+import com.codinginfinity.research.notification.exceptions.ImageException;
+import com.codinginfinity.research.notification.exceptions.RecipientException;
+
 import javax.mail.MessagingException;
 import java.awt.*;
 
