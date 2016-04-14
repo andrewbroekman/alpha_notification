@@ -185,25 +185,43 @@ public class Emailer implements IEmailer
 	public boolean sendMail(String name, String recipient, String subject, String message, String imagePath) throws MessagingException, RecipientException, ImageException
 	{
 		try{
-			// Create a default MimeMessage object.
-			msg = new MimeMessage(session);
+// Create a default MimeMessage object.
+			MimeMessage msg = new MimeMessage(session);
 
 			// Set From: header field of the header.
+			msg.setFrom(new InternetAddress(sender));
 
 			// Set To: header field of the header.
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 
 			// Set Subject: header field
-			msg.setSubject("Testing Subject");
-
-			// Create the message part
-			BodyPart messageBodyPart = new MimeBodyPart();
+			msg.setSubject(subject);
 
 			// Now set the actual message
-			messageBodyPart.setText("This is message body");
+			//msg.setText(message);
+
+			//create the html email
+			String part1 = "<div dir=\"ltr\"><div style=\"text-align:center\"><img src=\"http://www.up.ac.za/themes/up/img/up-logo.jpg\"><br><img src=\"http://www.cs.up.ac.za/static/images/headerCS.gif\" class=\"\" align=\"middle\"><br><h1><font size=\"2\">";
+
+			String greeting = "Hi "+name;
+
+			String part2 = "</font></h1><p class=\"\"><font size=\"4\"><b>";
+
+			String heading = subject;
+
+			String part3 = "</b></font></p><p>";
+
+			String messageContents = message;
 
 			// Create a multipar message
 			Multipart multipart = new MimeMultipart();
+
+			BodyPart messageBodyPart = new MimeBodyPart();
+
+			String part4 = "</p><br><h5><font size=\"1\">Contact us:</font></h5><font size=\"1\"></font><center><font size=\"1\"><a href=\"http://cs.up.ac.za\" align=\"center\" class=\"\">CS website</a><br></font><p><font size=\"1\"><a href=\"http://cs.up.ac.za/contact\">Email Enquiries</a></font></p><font size=\"1\">Phone: +27 12 420 2504</font></center></div></div>";
+			// Now set the actual message
+			String finalMessage = part1+greeting+part2+heading+part3+messageContents+part4;
+			messageBodyPart.setContent(finalMessage, "text/html");
 
 			// Set text message part
 			multipart.addBodyPart(messageBodyPart);
@@ -224,7 +242,9 @@ public class Emailer implements IEmailer
 			//source.getOutputStream().close();
 
 			System.out.println("Sent message successfully....");
-		}catch (MessagingException mex) {
+		}
+		catch (MessagingException mex)
+		{
 			mex.printStackTrace();
 		}
 		return true;

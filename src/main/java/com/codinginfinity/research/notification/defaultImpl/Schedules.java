@@ -3,6 +3,7 @@ package com.codinginfinity.research.notification.defaultImpl;
  * COS301 - Alpha Notifications
  */
 import com.codinginfinity.research.notification.RepeatRequest;
+import com.codinginfinity.research.notification.exceptions.ImageException;
 import com.codinginfinity.research.notification.exceptions.RecipientException;
 import com.codinginfinity.research.notification.requests.BroadcastNotificationRequest;
 import com.codinginfinity.research.notification.requests.NotificationRequest;
@@ -110,8 +111,10 @@ import java.util.Date;
                 String recipient = request.getUser().getEmailAddress();
                 if (recipient == null || recipient.equals(""))
                     throw new RecipientException("No Email Address found");
+                if (req.getImagePath() == null || req.getImagePath().equals(""))
+                    throw new ImageException("No image found");
 
-                if (!email.sendMail(recipient, subject, request.getMessage(), req.getImagePath()))
+                if (!email.sendMail(request.getUser().getFirstName(), recipient, subject, request.getMessage(), req.getImagePath()))
                     return new NotificationResponse("FAILED", "Could not send to the recipient: " + recipient);
             } catch (MessagingException me)
             {
@@ -120,6 +123,14 @@ import java.util.Date;
             catch (RecipientException re)
             {
                 return new NotificationResponse("FAILED", re.getMessage());
+            } catch (javax.mail.MessagingException e)
+            {
+                //e.printStackTrace();
+            }
+            catch (ImageException e)
+            {
+               // e.printStackTrace();
+                return new NotificationResponse("FAILED", e.getMessage());
             }
 
             return new NotificationResponse("SUCCESS");
