@@ -22,6 +22,13 @@ public interface NotificationRequest
     public Date getStartDate();
     public Date getEndDate();
     public Interval getInterval();
+
+    public void setUser(User u);
+    public void setMessage(String m);
+    public void setStartDate(Date d);
+    public void setEndDate(Date d);
+    public void setInterval(Interval i);
+
     @Id
     public String getId();
 

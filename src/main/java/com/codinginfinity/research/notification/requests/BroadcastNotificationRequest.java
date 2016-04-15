@@ -90,6 +90,12 @@ public class BroadcastNotificationRequest implements NotificationRequest
         return this.interval;
     }
 
+
+    public void setUser(User u)
+    {
+
+    }
+
     @Id
     public String getId()
     {
@@ -99,6 +105,27 @@ public class BroadcastNotificationRequest implements NotificationRequest
     public ArrayList<String> getUserlist()
     {
         return this.userList;
+    }
+
+
+    public void setMessage(String message)
+    {
+        this.message = message;
+    }
+
+    public void setStartDate(Date s)
+    {
+        this.startDate = s;
+    }
+
+    public void setEndDate(Date s)
+    {
+        this.endDate = s;
+    }
+
+    public void setInterval(Interval i)
+    {
+        this.interval = i;
     }
 
 

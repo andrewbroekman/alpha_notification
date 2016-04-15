@@ -67,6 +67,35 @@ public class ActivitiesNotificationRequest implements NotificationRequest
     {
         return this.interval;
     }
+
+    public void setUser(User u)
+    {
+        this.user = u;
+    }
+
+    public void setMessage(String message)
+    {
+        this.message = message;
+    }
+
+    public void setStartDate(Date s)
+    {
+        this.startDate = s;
+    }
+
+    public void setEndDate(Date s)
+    {
+        this.endDate = s;
+    }
+
+    public void setInterval(Interval i)
+    {
+        this.interval = i;
+    }
+
+
+
+
     @Id
     public String getId()
     {
