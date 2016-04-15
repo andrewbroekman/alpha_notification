@@ -11,6 +11,7 @@ public class Report{
 	
 	private String reportPath;
 	private Date reportDate;
+	private String message;
 	
 	/**
 	*	This is the constructor to create a Report object.
@@ -20,6 +21,7 @@ public class Report{
 	public Report(String reportPath, Date reportDate){
 		this.reportPath = reportPath;
 		this.reportDate = reportDate;
+		message = "This is a notification on your Report progress";
 	}
 	
 	/**
@@ -37,4 +39,6 @@ public class Report{
 	public Date getReportDate(){
 		return reportDate;
 	}
+
+	public String getMessage(){return message;}
 }
